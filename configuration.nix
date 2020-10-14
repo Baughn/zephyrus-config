@@ -20,6 +20,7 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Dublin";
+  security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
     neovim powertop git
@@ -35,16 +36,14 @@
   hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+    layout = "us";
+    libinput.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome3.enable = true;
+  };
 
   users.users.svein = {
     isNormalUser = true;
