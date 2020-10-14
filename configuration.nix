@@ -23,11 +23,12 @@
   security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
-    neovim powertop git
+    neovim powertop git gnome3.gnome-tweak-tool
   ];
 
   powerManagement = {
     powertop.enable = true;
+    cpuFreqGovernor = "schedutil";
   };
 
   services.printing.enable = true;
